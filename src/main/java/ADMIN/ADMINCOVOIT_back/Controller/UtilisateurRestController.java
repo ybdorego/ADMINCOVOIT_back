@@ -16,7 +16,8 @@ import java.util.List;
 ///import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/utilisateur")
+/*@CrossOrigin("*")*/
 public class UtilisateurRestController {
 
 //    private final UtilisateurDAO utilisateurDAO;
@@ -26,7 +27,7 @@ public class UtilisateurRestController {
         this.utilisateurService = utilisateurService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Utilisateur>> getallUtulisateur () {
         List<Utilisateur> utilisateurs =  utilisateurService.findAllUtilisateurs();
         return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
@@ -35,6 +36,16 @@ public class UtilisateurRestController {
     @GetMapping("/find/{id_utilisateur}")
     public ResponseEntity<Utilisateur> getUtilisateurbyId (@PathVariable("id_utilisateur") Integer id_utilisateur) {
         Utilisateur utilisateur = utilisateurService.findUtilisateurById(id_utilisateur);
+        return new ResponseEntity<>(utilisateur, HttpStatus.OK);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Utilisateur> findUtilisateurByMail (@PathVariable("email") String email) {
+        Utilisateur utilisateur = utilisateurService.findUtilisateurByEmail(email);
+        return new ResponseEntity<>(utilisateur, HttpStatus.OK);
+    }@GetMapping("/email2/{email}")
+    public ResponseEntity<Utilisateur> rechercheUtilisateurByEmail (@PathVariable("email") String email) {
+        Utilisateur utilisateur = utilisateurService.rechercheUtilisateurByEmail(email);
         return new ResponseEntity<>(utilisateur, HttpStatus.OK);
     }
 
