@@ -12,7 +12,7 @@ import java.util.*;
 public class TokenUtils {
     private final static  String ACCES_TOKEN_SECRET = "4qhq8LrEBfYcaRHxhdb9zURb2rf8e7Ud";
 
-    private final static Long ACCES_TOKEN_VALIDITY_SECONDS= 2_592_000L;
+    private final static Long ACCES_TOKEN_VALIDITY_SECONDS= 72000L;
 
 
 

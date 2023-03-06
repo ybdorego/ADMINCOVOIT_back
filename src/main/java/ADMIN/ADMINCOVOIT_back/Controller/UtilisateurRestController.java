@@ -20,7 +20,6 @@ import java.util.List;
 /*@CrossOrigin("*")*/
 public class UtilisateurRestController {
 
-//    private final UtilisateurDAO utilisateurDAO;
     private final UtilisateurService utilisateurService;
 
     public UtilisateurRestController( UtilisateurService utilisateurService) {
