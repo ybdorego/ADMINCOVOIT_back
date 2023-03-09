@@ -15,10 +15,6 @@ public interface UtilisateurDAO extends JpaRepository<Utilisateur, Integer> {
 
 
     Optional<Utilisateur> findUtilisateurByEmail(String mail);
-
-   /* @Query(value = "SELECT * FROM utilisateurs u WHERE u.email = :email and statut = 'admin'", nativeQuery = true)
-    public List<Utilisateur> rechercheByMail(@Param("email") String email);*/
-
     @Query(value = "SELECT * FROM utilisateurs u WHERE u.email = :email and statut = 'admin'", nativeQuery = true)
     Optional<Utilisateur> rechercheByMail(@Param("email") String email);
 }

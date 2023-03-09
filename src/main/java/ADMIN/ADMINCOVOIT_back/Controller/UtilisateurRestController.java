@@ -16,7 +16,7 @@ import java.util.List;
 ///import java.util.Optional;
 
 @RestController
-@RequestMapping("/utilisateur")
+@RequestMapping("api/utilisateur")
 /*@CrossOrigin("*")*/
 public class UtilisateurRestController {
 
@@ -27,7 +27,7 @@ public class UtilisateurRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Utilisateur>> getallUtulisateur () {
+    public ResponseEntity<List<Utilisateur>> getallUtilisateur () {
         List<Utilisateur> utilisateurs =  utilisateurService.findAllUtilisateurs();
         return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
     }

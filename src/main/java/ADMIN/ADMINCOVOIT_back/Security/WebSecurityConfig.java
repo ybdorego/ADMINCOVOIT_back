@@ -30,13 +30,19 @@ public class WebSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
         JWTAuthFilter jwtAuthFilter = new JWTAuthFilter();
         jwtAuthFilter.setAuthenticationManager(authenticationManager);
-        jwtAuthFilter.setFilterProcessesUrl("/connexion");
+        jwtAuthFilter.setFilterProcessesUrl("/login");
 
         return http
+                .cors()
+                .and()
                 .csrf().disable()
-                .authorizeRequests()
+                .authorizeHttpRequests()
+//                .antMatchers("/api/utilisateur")
+//                .permitAll()
                 .anyRequest()
                 .authenticated()
+                .and()
+                .httpBasic()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -46,16 +52,7 @@ public class WebSecurityConfig {
                 .build();
     }
 
-    /*@Bean
-    UserDetailsService userDetailsService(){
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("admin")
-                .password(passwordEncoder().encode("1234"))
-                .roles()
-                .build());
-        return manager;
-    }*/
-
+//.anyRequest()
     @Bean
     AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)

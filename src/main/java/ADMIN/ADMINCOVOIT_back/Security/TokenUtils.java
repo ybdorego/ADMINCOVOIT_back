@@ -16,16 +16,18 @@ public class TokenUtils {
 
 
 
-    public static String createToken(String nom, String email){
+    public static String createToken(String nom, String email,String statut){
         long expirationTime = ACCES_TOKEN_VALIDITY_SECONDS * 1000;
         Date expirationDate = new Date(System.currentTimeMillis()+expirationTime);
 
 
         Map<String, Object> extra = new HashMap<>();
         extra.put("nom", nom);
+        extra.put("statut",statut);
 
         return Jwts.builder()
                 .setSubject(email)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(expirationDate)
                 .addClaims(extra)
                 .signWith(Keys.hmacShaKeyFor(ACCES_TOKEN_SECRET.getBytes()))

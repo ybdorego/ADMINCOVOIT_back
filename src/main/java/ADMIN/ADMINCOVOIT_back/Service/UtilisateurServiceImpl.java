@@ -57,4 +57,6 @@ public class UtilisateurServiceImpl  implements UserDetails {
     public String getprenom(){
         return utilisateur.getPrenom();
     }
+
+    public String getstatut() { return utilisateur.getStatut();}
 }

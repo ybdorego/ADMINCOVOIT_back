@@ -52,7 +52,7 @@ public class UtilisateurService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Utilisateur utilisateur = utilisateurDAO
-                .findUtilisateurByEmail(email)
+                .rechercheByMail(email)
                 .orElseThrow(() -> new UserNotFoundException("l'email :  " + email + "  est inconu " ));
         return new UtilisateurServiceImpl(utilisateur) ;
     }
